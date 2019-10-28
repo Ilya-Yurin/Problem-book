@@ -1,0 +1,62 @@
+{
+  "settings": {
+    "import/resolver": {
+      "typescript": {}
+    }
+  },
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "airbnb",
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+    "prettier/@typescript-eslint",
+    "prettier/react"
+  ],
+  "plugins": [
+    "react-hooks",
+    "jsx-a11y"
+  ],
+  "rules": {
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react/jsx-filename-extension": [1, { "extensions": ["*.tsx", "*.ts"] }],
+    "space-infix-ops": "off",
+    "no-unused-vars": "off",
+    "react/prop-types": "off",
+    "no-empty": [
+      "error",
+      {
+        "allowEmptyCatch": true
+      }
+    ],
+    "max-len": [
+      "error",
+      150
+    ],
+    "import/prefer-default-export": "off",
+    "react/jsx-boolean-value": [
+      "error",
+      "always"
+    ],
+    "object-curly-newline": "off",
+    "@typescript-eslint/explicit-function-return-type": [
+      "off",
+      {
+        "allowExpressions": true
+      }
+    ],
+    "@typescript-eslint/indent": [
+      "error",
+      2
+    ],
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/prefer-interface": "off",
+    "@typescript-eslint/no-object-literal-type-assertion": "off",
+    "linebreak-style": "off"
+  }
+}

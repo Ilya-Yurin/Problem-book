@@ -1,0 +1,9 @@
+{
+  "presets": [],
+  "plugins": [
+    "@babel/plugin-syntax-dynamic-import",
+    ["import", { "libraryName": "antd", "style": "true" }],
+    "babel-plugin-styled-components",
+    "react-hot-loader/babel"
+  ]
+}

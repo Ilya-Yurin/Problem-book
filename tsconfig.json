@@ -1,30 +1,50 @@
 {
   "compilerOptions": {
     "sourceMap": true,
-    "jsx": "react",
+    "allowJs": false,
     "target": "es5",
     "module": "esnext",
     "moduleResolution": "node",
+    "jsx": "react",
+    "pretty": true,
+    "strict": true,
+    "noImplicitAny": true,
     "experimentalDecorators": true,
-    "declaration": false,
-    "removeComments": true,
-    "noImplicitReturns": true,
-    "noUnusedLocals": true,
-    "strict": false,
-    "outDir": "build",
-    "lib": ["es6", "es7", "dom"],
-    "baseUrl": "./",
-    "rootDir": "src",
-    "paths": {
-      "src/*": ["./src/*"]
-    },
-    "plugins": [
-      {
-        "name": "typescript-styled-plugin",
-        "tags": ["styled", "css"]
-      }
-    ],
+    "noUnusedLocals": false,
+    "resolveJsonModule": true,
+    "forceConsistentCasingInFileNames": true,
     "allowSyntheticDefaultImports": true,
+    "baseUrl": "./src",
+    "outDir": "./dist/",
+    "typeRoots": [
+      "node_modules/@types",
+      "src/types"
+    ],
+    "lib": [
+      "dom",
+      "es2018"
+    ],
+    "skipLibCheck": true,
   },
-  "exclude": ["dist", "build", "node_modules"]
+  "plugins": [
+    {
+      "name": "typescript-styled-plugin",
+      "tags": [
+        "styled",
+        "styled<",
+        "css"
+      ]
+    }
+  ],
+  "extensions": [".ts", ".tsx", ".js", ".jsx"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules",
+    "bower_components",
+    "static",
+    "tmp",
+  ]
 }

@@ -1,17 +1,22 @@
 import React from 'react';
 import ReactDom from 'react-dom';
+import { Provider } from 'react-redux';
 import { Router } from 'react-router-dom';
-import { History } from 'history';
-import { createBrowserHistory } from 'history';
-import AppEntry from 'src/components/entry/AppEntry';
+import { PersistGate } from 'redux-persist/integration/react';
+import AppEntry from 'components/entry/AppEntry';
+import { store, history, persistor } from "redux/store";
+import 'antd/dist/antd.less';
 
 const appContainerNode = document.getElementById('root');
-const browserHistory: History = createBrowserHistory();
 
 const render = (Component: React.ComponentType<any>) => ReactDom.render(
-  <Router history={browserHistory}>
-    <Component />
-  </Router>,
+  <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}>
+      <Router history={history}>
+        <Component />
+      </Router>
+    </PersistGate>
+  </Provider>,
   appContainerNode,
 );
 

@@ -1,3 +1,9 @@
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable import/first */
+require('dotenv-safe').config();
+
+console.log('TEST API : ', process.env);
+
 import path from 'path';
 import webpack from 'webpack';
 
@@ -5,12 +11,6 @@ import webpack from 'webpack';
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const HappyPack = require('happypack');
-
-/* eslint-disable import/no-extraneous-dependencies */
-const processEnv = {
-  apiProto: 'https',
-  apiHost: process.env.APIHOST,
-};
 
 const srcPath = path.join(__dirname, '..', 'src');
 const rootDir = path.resolve(__dirname, '..');
@@ -24,7 +24,6 @@ type CustomConfig = {
   rootDir: string;
   srcPath: string;
   entryPoint: string;
-  processEnv: typeof processEnv;
 };
 
 const config: webpack.Configuration & CustomConfig = {
@@ -33,7 +32,6 @@ const config: webpack.Configuration & CustomConfig = {
   rootDir,
   srcPath,
   entryPoint,
-  processEnv,
   target: 'web',
   output: {
     publicPath,
@@ -105,7 +103,14 @@ const config: webpack.Configuration & CustomConfig = {
         },
       ],
     }),
-    new ForkTsCheckerWebpackPlugin({ checkSyntacticErrors: true }),
+    new ForkTsCheckerWebpackPlugin({checkSyntacticErrors: true}),
+    new webpack.DefinePlugin({
+      'process.env': {
+        developer: JSON.stringify(process.env.DEVELOPER),
+        proto: JSON.stringify('https'),
+        host: JSON.stringify(process.env.APIHOST),
+      },
+    }),
   ],
 };
 

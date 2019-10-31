@@ -1,29 +1,19 @@
-import styled from 'styled-components';
-
-export const StyledMainPage = styled.main`
-  display: flex;
-  flex-wrap: wrap;
-  flex: 1;
-
-  .react-grid-item.react-grid-placeholder {
-    background: none !important;
-    border-radius: 5px; */
-  }
-
-  .react-grid-item > .react-resizable-handle {
-    opacity: 0;
-  }
-`;
+import styled from 'utils/styled';
 
 export const StyledPageWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   flex: 1;
 `;
 
-export const RouteSpecificContent = styled.div`
+export const RouteSpecificContent = styled.main`
   display: flex;
   position: relative;
   flex: 1;
   overflow-x: auto;
+  background-color: #E3E8F0;
+    & > * {
+      padding: 16px 15% 16px 15%;
+    }
 `;

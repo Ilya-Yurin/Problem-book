@@ -1,9 +1,9 @@
 import React from 'react';
 import { hot } from 'react-hot-loader';
 import { Route, Switch } from 'react-router-dom';
-import Login from 'src/components/pages/Login';
-import Main from 'src/components/pages/Main';
-import { StyledAppEntry } from 'src/components/entry/AppEntry/styled';
+import Login from 'components/pages/Login';
+import Main from 'components/pages/Main';
+import { StyledAppEntry, GlobalStyle } from 'components/entry/AppEntry/styled';
 
 const AppEntry: React.FC<any> = React.memo(props => (
   <StyledAppEntry>
@@ -11,6 +11,7 @@ const AppEntry: React.FC<any> = React.memo(props => (
       <Route path="/login" component={Login} />
       <Route path="/" component={Main} />
     </Switch>
+    <GlobalStyle />
   </StyledAppEntry>
 ));
 

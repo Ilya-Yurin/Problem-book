@@ -2,6 +2,7 @@
   "presets": [],
   "plugins": [
     "@babel/plugin-syntax-dynamic-import",
+    "ramda",
     ["import", { "libraryName": "antd", "style": "true" }],
     "babel-plugin-styled-components",
     "react-hot-loader/babel"

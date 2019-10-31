@@ -1,7 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
-/* eslint-disable import/first */
-require('dotenv-safe').config();
-
 import webpack from 'webpack';
 import sharedConfig from './webpack.config.shared';
 

@@ -7,10 +7,7 @@ notification.config({
 export type NotificationType = 'error' | 'success';
 
 const showNotification = (type: NotificationType, message: string, description: string) => {
-  notification[type]({
-    message: message,
-    description: description,
-  });
+  notification[type]({ message, description });
 };
 
 export const showErrorNotification = (message: string, description: string) => {

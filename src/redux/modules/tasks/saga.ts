@@ -4,17 +4,16 @@ import { createSaga, successSaga } from 'redux/modules/helpers';
 import { REQUEST } from 'redux/modules/constants';
 import { FETCH_TASK_LIST, CREATE_TASK, UPDATE_TASK, SELECT_TASK, CLEAR_TASK } from 'redux/modules/tasks/constants';
 import { CHECK_SESSION } from "redux/modules/session/constants";
-import { IAction } from "redux/types/store";
+import { Action } from "redux/types/store";
 import { goToPath } from "utils/navigator";
 import { ProblemApiService } from "api/services";
 import { ListParams, ListData } from "api/types/index";
 import { Task } from "components/domain/tasks/types";
 import propOr from 'ramda/es/propOr';
-import { selectedTaskIdSelector } from "./selectors";
 import { showSuccessNotification } from "utils/notifications";
-import { isAuthSelector } from "../session/selectors";
+import { selectedTaskIdSelector } from "./selectors";
 
-export const fetchAllTaskSaga = createSaga(FETCH_TASK_LIST, function* (action: IAction<ListParams>): SagaIterator {
+export const fetchAllTaskSaga = createSaga(FETCH_TASK_LIST, function* (action: Action<ListParams>): SagaIterator {
   const data: ListData = yield call(ProblemApiService.get as any, action.payload);
   yield call(
     successSaga,
@@ -23,7 +22,7 @@ export const fetchAllTaskSaga = createSaga(FETCH_TASK_LIST, function* (action: I
   );
 });
 
-export const createTaskSaga = createSaga(CREATE_TASK, function* (action: IAction<FormData>): SagaIterator {
+export const createTaskSaga = createSaga(CREATE_TASK, function* (action: Action<FormData>): SagaIterator {
   yield call([ProblemApiService.path('/create'), 'post'] as any, action.payload);
   showSuccessNotification('', 'Создана новая задача');
   yield call(
@@ -33,7 +32,7 @@ export const createTaskSaga = createSaga(CREATE_TASK, function* (action: IAction
   goToPath('/');
 });
 
-export const editTaskSaga = createSaga(UPDATE_TASK, function* (action: IAction<FormData>): SagaIterator {
+export const editTaskSaga = createSaga(UPDATE_TASK, function* (action: Action<FormData>): SagaIterator {
   const taskId: number = yield select(selectedTaskIdSelector);
   yield put({ type: `${CHECK_SESSION}${REQUEST}` });
   yield call([ProblemApiService.path(`/edit/${taskId}`), 'securePost'] as any, action.payload);
@@ -45,14 +44,16 @@ export const editTaskSaga = createSaga(UPDATE_TASK, function* (action: IAction<F
   goToPath('/');
 });
 
-export const selectTaskSaga = createSaga(SELECT_TASK, function* (action: IAction<Task>): SagaIterator {
+export const selectTaskSaga = createSaga(SELECT_TASK, function* (action: Action<Task>): SagaIterator {
   const taskId: number = propOr(null, 'id')(action.payload);
   yield call(
     successSaga,
     SELECT_TASK,
     action.payload
   );
-  taskId && goToPath(`/tasks/${taskId}`);
+  if (taskId) {
+    goToPath(`/tasks/${taskId}`);
+  }
 });
 
 export const clearTaskSaga = createSaga(CLEAR_TASK, function* (): SagaIterator {

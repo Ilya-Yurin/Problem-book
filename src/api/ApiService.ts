@@ -1,16 +1,18 @@
-import {ApiOptions, APIResponse, ListParams} from "./types/index";
 import pathOr from 'ramda/es/pathOr';
 import axios from 'axios';
 import keys from 'ramda/es/keys';
 import Cookies from "js-cookie";
 import isEmpty from 'ramda/es/isEmpty';
 import isNil from 'ramda/es/isNil';
-import not from 'ramda/es/not';
+import { ApiOptions, APIResponse, ListParams } from "./types/index";
 
 export default class ApiService {
   url: string;
+
   options: ApiOptions;
+
   developer: string;
+
   constructor(url: string, developer: string, options: ApiOptions = {}) {
     this.url = url;
     this.options = options;

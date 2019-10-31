@@ -20,12 +20,12 @@ type ListProps = {
 const List: React.FC<ListProps> = ({ dataSource, total, changeTable, changePage, isLoading, onRow }) => (
   <StyledListWrapper>
     <Table rowKey="id"
-           columns={columns}
-           dataSource={dataSource}
-           onChange={changeTable}
-           loading={isLoading}
-           pagination={false}
-           onRow={onRow}
+      columns={columns}
+      dataSource={dataSource}
+      onChange={changeTable}
+      loading={isLoading}
+      pagination={false}
+      onRow={onRow}
     />
     <StyledPaginationWrapper>
       <Pagination total={total} onChange={changePage} pageSize={3} />

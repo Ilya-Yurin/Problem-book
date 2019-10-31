@@ -25,7 +25,7 @@ const Header: React.FC = () => {
                 <StyledTitle color="blue">Admin</StyledTitle>
                 <StyledLogout onClick={onLogout}>Выйти</StyledLogout>
               </>
-              )
+            )
             : (<DefaultLink to="/login">Войти</DefaultLink>)
         }
       </HeaderTail>

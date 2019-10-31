@@ -1,8 +1,8 @@
-import { TaskStore } from "./types";
+import persistor from 'redux/modules/tasks/persistor';
 import { START, SUCCESS, ERROR } from 'redux/modules/constants';
 import { CREATE_TASK, FETCH_TASK_LIST, UPDATE_TASK, SELECT_TASK, CLEAR_TASK } from 'redux/modules/tasks/constants';
 import { Task } from "components/domain/tasks/types";
-import persistor from 'redux/modules/tasks/persistor';
+import { TaskStore } from "./types";
 
 const initialState: TaskStore = {
   data: {

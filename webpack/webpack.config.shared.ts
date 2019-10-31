@@ -2,8 +2,6 @@
 /* eslint-disable import/first */
 require('dotenv-safe').config();
 
-console.log('TEST API : ', process.env);
-
 import path from 'path';
 import webpack from 'webpack';
 

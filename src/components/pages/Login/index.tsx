@@ -1,6 +1,5 @@
 import React from 'react';
 import { RouteComponentProps } from 'react-router';
-import LoginForm from './Form';
 import {
   StyledLoginPage,
   StyledLoginContainer,
@@ -8,6 +7,7 @@ import {
   StyledTitleText,
   StyledTitle
 } from 'components/pages/Login/styled';
+import LoginForm from './Form';
 
 const LoginPage: React.FC<RouteComponentProps<any>> = () => {
   return (

@@ -5,10 +5,10 @@ import { useErrorNotification } from 'components/domain/hooks';
 import { totalTasksSelector, taskErrorSelector, taskLoadingSelector, normalizedTaskListSelector } from "redux/modules/tasks/selectors";
 import { Icon } from 'antd';
 import { SorterResult } from "antd/lib/table";
-import List from './List';
 import DefaultLink from 'components/common/Link';
 import { Direction, SortField } from "api/types/index";
 import { Task } from "components/domain/tasks/types";
+import List from './List';
 import {
   StyledWrapper,
   StyledContent,
@@ -28,7 +28,7 @@ const TaskList: React.FC = () => {
   useErrorNotification(useSelector(taskErrorSelector));
 
   const changeTable = useCallback(
-    (page: any, filter: any, sort: SorterResult<any>) => {
+    (pageNum: any, filter: any, sort: SorterResult<any>) => {
       setSortField(`${sort.columnKey}` as SortField);
       setSortDirection(sort.order === 'ascend' ? 'asc' : 'desc');
     },
@@ -55,11 +55,11 @@ const TaskList: React.FC = () => {
         </StyledListHeader>
         <StyledTaskList>
           <List dataSource={dataList}
-                total={total}
-                changeTable={changeTable}
-                changePage={setPage}
-                isLoading={isLoading}
-                onRow={onRowClick}
+            total={total}
+            changeTable={changeTable}
+            changePage={setPage}
+            isLoading={isLoading}
+            onRow={onRowClick}
           />
         </StyledTaskList>
       </StyledContent>

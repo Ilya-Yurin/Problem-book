@@ -1,7 +1,7 @@
-import { FETCH_TASK_LIST, CREATE_TASK, UPDATE_TASK, SELECT_TASK, CLEAR_TASK } from "./constants";
 import { createActionCreator } from 'redux/modules/helpers';
 import { ListParams } from "api/types/index";
 import { Task } from "components/domain/tasks/types";
+import { FETCH_TASK_LIST, CREATE_TASK, UPDATE_TASK, SELECT_TASK, CLEAR_TASK } from "./constants";
 
 /**
  * Action Creators

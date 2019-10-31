@@ -1,5 +1,5 @@
-import { MAKE_LOGIN, CHECK_SESSION, MAKE_LOGOUT } from "./constants";
 import { createActionCreator } from 'redux/modules/helpers';
+import { MAKE_LOGIN, MAKE_LOGOUT } from "./constants";
 
 /**
  * Action Creators

@@ -8,7 +8,7 @@ export interface RootStore {
   session: SessionStore;
 }
 
-export interface IAction<T> {
+export interface Action<T> {
   type: string;
   payload?: T | null;
 }

@@ -4,14 +4,14 @@ import Cookies from "js-cookie";
 import { createSaga, successSaga } from 'redux/modules/helpers';
 import { REQUEST } from 'redux/modules/constants';
 import { MAKE_LOGIN, CHECK_SESSION, MAKE_LOGOUT } from 'redux/modules/session/constants';
-import { IAction } from "redux/types/store";
+import { Action } from "redux/types/store";
 import { goToPath } from "utils/navigator";
 import { ProblemApiService } from "api/services";
 import { SessiontData } from "api/types/index";
 import isEmpty from 'ramda/es/isEmpty';
 import isNil from 'ramda/es/isNil';
 
-export const makeLoginSaga = createSaga(MAKE_LOGIN, function* (action: IAction<FormData>): SagaIterator {
+export const makeLoginSaga = createSaga(MAKE_LOGIN, function* (action: Action<FormData>): SagaIterator {
   const data: SessiontData = yield call([ProblemApiService.path('/login'), 'post'] as any, action.payload) || [];
   Cookies.set('pb-token', data.token);
   yield call(

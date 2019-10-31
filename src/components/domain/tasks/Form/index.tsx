@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import omit from 'ramda/es/omit';
 import { useErrorNotification } from "components/domain/hooks";
@@ -27,8 +27,10 @@ const { TextArea } = Input;
 
 const TaskForm: React.FC<TaskFormProps> = ({ form }) => {
   const dispatch = useDispatch();
+  const [validationError, setValidationError] = useState<string | null>(null);
   const task: Task = useSelector(taskSelector);
   const token: string | null = useSelector(tokenSelector);
+  useErrorNotification(validationError);
   const { getFieldDecorator } = form;
 
   const handleSubmit = useCallback(
@@ -37,10 +39,10 @@ const TaskForm: React.FC<TaskFormProps> = ({ form }) => {
         (err: { [key: string]: any }, values: { [key: string]: any }) => {
           if(err)
           {
-            useErrorNotification('Проверьте правильность введенных данных');
+            setValidationError('Проверьте правильность введенных данных');
             return;
           }
-
+          setValidationError(null);
           const formData = new FormData();
           if (task.id) {
             formData.append('token', `${token}`);
@@ -49,7 +51,6 @@ const TaskForm: React.FC<TaskFormProps> = ({ form }) => {
             }, { ...omit(['username', 'email'], values), status: values.status ? 10 : 0 });
             dispatch(updateTask(formData));
           } else {
-            const formData = new FormData();
             forEachObjIndexed((value, name) => formData.append(`${name}`, `${value}`), values);
             dispatch(createTask(formData));
           }
@@ -124,22 +125,24 @@ const TaskForm: React.FC<TaskFormProps> = ({ form }) => {
 
           {/* DONE SWITCH */}
           {
-            task.id && (<StyledRow>
-            <StyledCol md={{ span: 10, offset: 7 }}>
-              <StyledFormItem>
-                {getFieldDecorator('status', {
-                  initialValue: task.status === 10,
-                  valuePropName: 'checked',
-                  rules: [
-                    {
-                      required: true,
-                      message: 'Please, input text of the task',
-                    },
-                  ],
-                })(<Checkbox>Выполнено</Checkbox>)}
-              </StyledFormItem>
-            </StyledCol>
-          </StyledRow>)
+            task.id && (
+              <StyledRow>
+                <StyledCol md={{ span: 10, offset: 7 }}>
+                  <StyledFormItem>
+                    {getFieldDecorator('status', {
+                      initialValue: task.status === 10,
+                      valuePropName: 'checked',
+                      rules: [
+                        {
+                          required: true,
+                          message: 'Please, input text of the task',
+                        },
+                      ],
+                    })(<Checkbox>Выполнено</Checkbox>)}
+                  </StyledFormItem>
+                </StyledCol>
+              </StyledRow>
+            )
           }
           {/* /DONE SWITCH */}
 

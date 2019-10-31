@@ -1,7 +1,7 @@
-import { SessionStore } from "./types";
+import persistor from 'redux/modules/session/persistor';
 import { START, SUCCESS, ERROR } from 'redux/modules/constants';
 import { MAKE_LOGIN, MAKE_LOGOUT, CHECK_SESSION } from 'redux/modules/session/constants';
-import persistor from 'redux/modules/session/persistor';
+import { SessionStore } from "./types";
 
 const initialState: SessionStore = {
   token: null,

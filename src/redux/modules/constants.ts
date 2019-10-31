@@ -1,4 +1,4 @@
-export const REQUEST: string = '__REQUEST';
-export const START: string = '__START';
-export const SUCCESS: string = '__SUCCESS';
-export const ERROR: string = '__ERROR';
+export const REQUEST = '__REQUEST';
+export const START = '__START';
+export const SUCCESS = '__SUCCESS';
+export const ERROR = '__ERROR';

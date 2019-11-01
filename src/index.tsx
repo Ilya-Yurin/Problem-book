@@ -5,7 +5,6 @@ import { Router } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
 import AppEntry from 'components/entry/AppEntry';
 import { store, history, persistor } from "redux/store";
-import 'antd/dist/antd.less';
 
 const appContainerNode = document.getElementById('root');
 

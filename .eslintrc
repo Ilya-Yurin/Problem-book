@@ -57,6 +57,8 @@
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/prefer-interface": "off",
     "@typescript-eslint/no-object-literal-type-assertion": "off",
-    "linebreak-style": "off"
+    "linebreak-style": "off",
+    "@typescript-eslint/camelcase": "off",
+    "react/jsx-props-no-spreading": "off"
   }
 }
